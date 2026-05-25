@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "头歌粘贴助手",
+  "version": "2.1",
+  "description": "解除头歌(Educoder)网站的代码粘贴限制",
+  "permissions": ["clipboardRead", "clipboardWrite", "downloads"],
+  "host_permissions": [
+    "*://*.educoder.net/*",
+    "*://data.educoder.net/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.educoder.net/*"],
+      "js": ["inject.js"],
+      "css": ["panel.css"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["pageScript.js"],
+      "matches": ["*://*.educoder.net/*"]
+    }
+  ]
+}
